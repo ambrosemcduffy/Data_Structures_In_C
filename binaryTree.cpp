@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 #include <deque>
 #include <iostream>
 
@@ -13,43 +14,30 @@ class Node{
 	*/
 
 	private:
-				Node* left = nullptr;
-				Node* right = nullptr;
-				string value;
+		Node* left = nullptr;
+		Node* right = nullptr;
+		string value;
 	
 	public:
-				Node(string value_):value(value_){}
-				
-				string getValue(){
-					return this-> value;
-				}
-				
-				void setValue(string newValue){
-					this->value = newValue;
-				}
-				
-				bool hasLeft(){
-					return this->left != nullptr;
-				}
-				
-				bool hasRight(){
-					return this->right != nullptr;
-				}
-				
-				void setLeft(Node* newValue){
-					this->left = newValue;
-				}
-				
-				void setRight(Node* newValue){
-					this->right = newValue;
-				}
-				
-				Node* getLeft(){
-					return this->left;
-				}
-				Node* getRight(){
-					return this->right;
-				}
+		Node(string value_):value(value_){}
+
+		
+
+		void setValue(string newValue) { this->value = newValue; }
+
+		void setLeft(Node* newValue) { this->left = newValue; }
+
+		void setRight(Node* newValue) { this->right = newValue; }
+
+		string getValue() const { return this-> value; }
+
+		Node* getLeft() const { return this->left; }
+
+		Node* getRight() const { return this->right; }
+
+		bool hasLeft() { return this->left != nullptr; }
+
+		bool hasRight() { return this->right != nullptr; }
 };
 
 
@@ -60,7 +48,7 @@ class Tree{
 	public:
 		void setRoot(string newValue){
 			this->root = new Node(newValue);
-			}
+		}
 		
 		Node* getRoot(){
 			return this->root;
@@ -71,21 +59,23 @@ class Tree{
 			
 			if (this->getRoot() == nullptr){
 				this->setRoot(value);
-				}
+			}
 			
 			else{
 				Node* node = this->getRoot();
+				
 				while(true){
 					if (node->hasLeft()){
 						if (node->hasRight()){
 							node = node->getLeft();
 						}
+						
 						else{
-							
 							node->setRight(newNode);
 							break;
 						}
 					}
+					
 					else{
 						node->setLeft(newNode);
 						break;
@@ -93,12 +83,11 @@ class Tree{
 				}
 			}
 		}
-
 };
 
 
 void BFS(Node* root){
-	deque queue = {root};
+	deque<Node*> queue = {root};
 	
 	while (queue.size() > 0){
 	
@@ -116,6 +105,16 @@ void BFS(Node* root){
 	}
 }
 
+
+void DFS(Node* node){
+    if (node){
+        std::cout << node->getValue() << "\n";
+        DFS(node->getLeft());
+        DFS(node->getRight());
+    }
+}
+
+
 int main(){
 	
 	Node root = Node("ambrose");
@@ -132,8 +131,18 @@ int main(){
 	mytree.insert("CNN");
 	mytree.insert("Sunset Park");
 	mytree.insert("Baby Boomer");
-	
-	BFS(mytree.getRoot());
+
+    std::string algo;
+    std::cout << "Which search algorithm you want for the tree search?? \n"; 
+    std::cin >> algo;
+    std::cout << "\n";
+
+    if (algo == "bfs"){
+        BFS(mytree.getRoot());
+    }
+    else{
+        DFS(mytree.getRoot());
+    }
 	
 	
 }
