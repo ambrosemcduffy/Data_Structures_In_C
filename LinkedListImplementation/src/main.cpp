@@ -11,6 +11,7 @@ int main() {
   ll.append("batman");
   ll.append("bruce wayne");
   ll.append("catwoman");
+  ll.append("Peter Parker");
   
   //removing a few values
   ll.remove("batman");
