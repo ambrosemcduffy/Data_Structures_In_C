@@ -5,7 +5,7 @@ using std::vector;
 using std::cout;
 
 
-vector<int> selectionSort(vector<int> array){
+vector<int> selectionSort(vector<int> &array){
 	/*
 	   Selection Sort Algorithm O(n^2) runtime
 	*/
