@@ -4,7 +4,7 @@
 #include "binaryTree.h"
 #include "searchAlgorithm.h"
 
-void whichSearchAlgorithm(Tree &tree) {
+void const whichSearchAlgorithm(Tree &tree) {
   std::string searchAlgorithm;
   std::cout << "Which search algorithm you want for the tree search?? \n";
   std::cin >> searchAlgorithm;

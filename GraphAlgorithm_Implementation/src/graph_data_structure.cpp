@@ -5,8 +5,8 @@
 #include <vector>
 
 void Node::addChild(Node &nodeValue) { this->children.push_back(nodeValue); }
-std::string Node::getValue() { return this->value_; }
-std::vector<Node> Node::getChildren() { return this->children; }
+std::string Node::getValue() const { return this->value_; }
+std::vector<Node> Node::getChildren() const { return this->children; }
 
 void Graph::connectEdges(Node &to_node, Node &from_node) {
   if (this->ifInArray(to_node) or this->ifInArray(from_node)) {
@@ -15,7 +15,7 @@ void Graph::connectEdges(Node &to_node, Node &from_node) {
   }
 }
 
-bool Graph::ifInArray(Node queryNode) {
+bool Graph::ifInArray(Node &queryNode) const {
   for (Node node : this->nodes) {
     if (queryNode.getValue() == node.getValue()) {
       return true;
@@ -24,7 +24,7 @@ bool Graph::ifInArray(Node queryNode) {
   return false;
 }
 
-bool ifInArray(Node &queryNode, std::vector<std::string> &visited) {
+bool const ifInArray(Node &queryNode, std::vector<std::string> &visited) {
   for (auto node_ : visited) {
     if (queryNode.getValue() == node_) {
       return false;
@@ -33,13 +33,13 @@ bool ifInArray(Node &queryNode, std::vector<std::string> &visited) {
   return true;
 }
 
-void printArrayElements(std::vector<std::string> array) {
+void const printArrayElements(std::vector<std::string> &array) {
   for (std::string i : array) {
     std::cout << i << "\n";
   }
 }
 
-std::vector<std::string> BFS(Node startNode) {
+std::vector<std::string> const BFS(Node &startNode) {
   std::deque<Node> queue = {startNode};
   std::vector<std::string> visited;
 

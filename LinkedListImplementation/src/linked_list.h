@@ -5,7 +5,7 @@
 
 class Node {
 public:
-  Node(std::string value_) : value(value_) {}
+  Node(std::string const &value_) : value(value_) {}
   std::string value;
   Node *next = nullptr;
 };
@@ -19,8 +19,8 @@ public:
   void append(std::string value);
   std::string pop();
   void remove(std::string target);
-  void printList();
-  int getSize();
+  void printList() const;
+  int getSize() const;
 };
 
 #endif

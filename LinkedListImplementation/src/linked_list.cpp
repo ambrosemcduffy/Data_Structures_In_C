@@ -36,7 +36,7 @@ void Linkedlist::remove(std::string target) {
   }
 }
 
-void Linkedlist::printList() {
+void Linkedlist::printList() const {
   Node *node = this->head;
 
   while (node) {
@@ -45,4 +45,4 @@ void Linkedlist::printList() {
   }
 }
 
-int Linkedlist::getSize() { return this->num_entries; }
+int Linkedlist::getSize() const { return this->num_entries; }

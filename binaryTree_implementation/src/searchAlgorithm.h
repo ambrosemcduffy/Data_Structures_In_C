@@ -2,7 +2,7 @@
 #define HEADER_SEARCH_H
 #include "binaryTree.h"
 
-void BFS(Node *);
-void DFS(Node *);
+void const BFS(Node *);
+void const DFS(Node *);
 
 #endif

@@ -1,9 +1,8 @@
-#include <iostream>
-#include <deque>
 #include "searchAlgorithm.h"
+#include <deque>
+#include <iostream>
 
-
-void BFS(Node *root) {
+void const BFS(Node *root) {
   std::deque<Node *> queue = {root};
 
   while (queue.size() > 0) {
@@ -22,7 +21,7 @@ void BFS(Node *root) {
   }
 }
 
-void DFS(Node *node) {
+void const DFS(Node *node) {
   if (node) {
     std::cout << node->getValue() << "\n";
     DFS(node->getLeft());
