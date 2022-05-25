@@ -19,15 +19,16 @@ void const whichSearchAlgorithm(Tree &tree) {
 int main() {
 
   // Initializing Tree
-  Tree mytree = Tree();
-  mytree.insert("Ambrose");
-  mytree.insert("Riinu");
-  mytree.insert("Dom");
-  mytree.insert("Batman");
-  mytree.insert("Bill Maher");
-  mytree.insert("CNN");
-  mytree.insert("Sunset Park");
-  mytree.insert("Baby Boomer");
+  Tree *mytree = new Tree();
+  mytree->insert("Ambrose");
+  mytree->insert("Riinu");
+  mytree->insert("Dom");
+  mytree->insert("Batman");
+  mytree->insert("Bill Maher");
+  mytree->insert("CNN");
+  mytree->insert("Sunset Park");
+  mytree->insert("Baby Boomer");
 
-  whichSearchAlgorithm(mytree);
+  whichSearchAlgorithm(*mytree);
+  delete mytree;
 }

@@ -19,7 +19,7 @@ bool Node::hasRight() const { return this->right != nullptr; }
 // Implementing Tree Methods.
 
 // Setters for Tree
-void Tree::setRoot(string &newValue) { this->root = new Node(newValue); }
+void Tree::setRoot(Node* newValue) { this->root = newValue; }
 Node *Tree::getRoot() const { return this->root; }
 
 // Insert Method
@@ -27,7 +27,7 @@ void Tree::insert(string value) {
   Node *newNode = new Node(value);
 
   if (this->getRoot() == nullptr) {
-    this->setRoot(value);
+    this->setRoot(newNode);
   }
 
   else {

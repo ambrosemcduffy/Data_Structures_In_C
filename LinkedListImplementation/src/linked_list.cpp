@@ -29,7 +29,9 @@ void Linkedlist::remove(std::string target) {
   this->num_entries--;
   while (node) {
     if (node->next->value == target) {
+      Node * temp = node->next;
       node->next = node->next->next;
+      delete temp;
       return;
     }
     node = node->next;
@@ -41,7 +43,9 @@ void Linkedlist::printList() const {
 
   while (node) {
     std::cout << node->value << "\n";
+    Node *temp = node;
     node = node->next;
+    delete temp;
   }
 }
 
