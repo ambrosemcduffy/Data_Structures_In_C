@@ -18,7 +18,7 @@ private:
 public:
   Linkedlist() {
     printf("Allocating memory\n");
-    tail = (Node *)malloc(sizeof(Node));
+    new_node = (Node *)malloc(sizeof(Node));
   }
 
   ~Linkedlist() {
@@ -27,9 +27,11 @@ public:
     while (node) {
       Node *temp = node;
       node = node->next;
-      free(temp);
+      if (temp != nullptr){
+        delete temp;
+      }
     }
-    free(tail);
+    free(new_node);
   }
 
   Linkedlist(Linkedlist &source) {
@@ -40,8 +42,11 @@ public:
 
       Node *temp = source_node;
       source_node = source_node->next;
-      delete temp;
+      if (temp != nullptr){
+        delete temp;
+      }
     }
+    free(source.new_node);
     source.head = nullptr;
     source.tail = nullptr;
     source.num_entries = 0;
@@ -56,8 +61,11 @@ public:
 
       Node *temp = source_node;
       source_node = source_node->next;
-      delete temp;
+      if (temp != nullptr){
+        delete temp;
+      }
     }
+    free(source.new_node);
     source.head = nullptr;
     source.tail = nullptr;
     source.num_entries = 0;
@@ -73,8 +81,11 @@ public:
 
       Node *temp = source_node;
       source_node = source_node->next;
-      delete temp;
+      if (temp != nullptr){
+        delete temp;
+      }
     }
+    free(source.new_node);
     source.head = nullptr;
     source.tail = nullptr;
     source.num_entries = 0;
@@ -92,8 +103,11 @@ public:
 
       Node *temp = source_node;
       source_node = source_node->next;
-      delete temp;
+      if (temp != nullptr){
+        delete temp;
+      }
     }
+    free(source.new_node);
     source.head = nullptr;
     source.tail = nullptr;
     source.num_entries = 0;

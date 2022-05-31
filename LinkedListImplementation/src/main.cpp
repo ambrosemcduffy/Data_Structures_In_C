@@ -13,7 +13,7 @@ int main() {
   ll.append("Dom");
   ll.append("Riinu");
 
-  Linkedlist ll2 = ll;
+  Linkedlist ll2(ll);
   Linkedlist ll3 = ll2;
 
   useObject(std::move(ll3));
