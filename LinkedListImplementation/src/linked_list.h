@@ -1,9 +1,8 @@
 #ifndef HEADER_LINKEDLIST_H
 #define HEADER_LINKEDLIST_H
 
-#include <string>
 #include <stdio.h>
-
+#include <string>
 
 class Node {
 public:
@@ -14,27 +13,92 @@ public:
 
 class Linkedlist {
 private:
-Node* new_node = nullptr;
+  Node *new_node = nullptr;
+
 public:
-  Linkedlist(){
-    printf("Constructor called\n");
-    //new_node = (Node *)malloc(sizeof(Node));
-  }
-  ~Linkedlist(){
-    printf("Destructor Called\n");
-    //free(new_node);
+  Linkedlist() {
+    printf("Allocating memory\n");
+    tail = (Node *)malloc(sizeof(Node));
   }
 
-  void* operator new(size_t size){
-    printf("allocating memory of size:%ld\n", size);
-    void *new_node = malloc(size);
-    return new_node;
+  ~Linkedlist() {
+    printf("Deallocating memory\n");
+    Node *node = head;
+    while (node) {
+      Node *temp = node;
+      node = node->next;
+      free(temp);
+    }
+    free(tail);
   }
 
-  void operator delete(void *new_node){
-    printf("deallocating memory\n");
-    free(new_node);
-    new_node = 0;
+  Linkedlist(Linkedlist &source) {
+    printf("Copying over members to new instance..\n");
+    Node *source_node = source.head;
+    while (source_node) {
+      append(source_node->value);
+
+      Node *temp = source_node;
+      source_node = source_node->next;
+      delete temp;
+    }
+    source.head = nullptr;
+    source.tail = nullptr;
+    source.num_entries = 0;
+    source.new_node = nullptr;
+  }
+
+  Linkedlist &operator=(Linkedlist &source) {
+    printf("Assigning - Copying over members to new instance..\n");
+    Node *source_node = source.head;
+    while (source_node) {
+      append(source_node->value);
+
+      Node *temp = source_node;
+      source_node = source_node->next;
+      delete temp;
+    }
+    source.head = nullptr;
+    source.tail = nullptr;
+    source.num_entries = 0;
+    source.new_node = nullptr;
+    return *this;
+  }
+
+  Linkedlist(Linkedlist &&source) {
+    printf("Moving over members to new instance..\n");
+    Node *source_node = source.head;
+    while (source_node) {
+      append(source_node->value);
+
+      Node *temp = source_node;
+      source_node = source_node->next;
+      delete temp;
+    }
+    source.head = nullptr;
+    source.tail = nullptr;
+    source.num_entries = 0;
+    source.new_node = nullptr;
+  }
+
+  Linkedlist &operator=(Linkedlist &&source) {
+    printf("Assigning - Moving over members to new instance..\n");
+    if (this == &source) {
+      return *this;
+    }
+    Node *source_node = source.head;
+    while (source_node) {
+      append(source_node->value);
+
+      Node *temp = source_node;
+      source_node = source_node->next;
+      delete temp;
+    }
+    source.head = nullptr;
+    source.tail = nullptr;
+    source.num_entries = 0;
+    source.new_node = nullptr;
+    return *this;
   }
 
   Node *head = nullptr;

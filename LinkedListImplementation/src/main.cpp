@@ -1,24 +1,22 @@
 #include "linked_list.h"
 #include <iostream>
 
+void useObject(Linkedlist obj) {
+  std::cout << "using object " << &obj << std::endl;
+}
 
 int main() {
-  Linkedlist *ll = new Linkedlist();
+  Linkedlist ll;
 
   // Appending Values to list
-  ll->append("ambrose");
-  ll->append("riinu");
-  ll->append("dom");
-  ll->append("batman");
-  ll->append("bruce wayne");
-  ll->append("catwoman");
-  ll->append("Peter Parker");
-  
-  //removing a few values
-  ll->remove("batman");
-  ll->remove("catwoman");
-  //std::cout << ll.getSize() << "\n";
-  ll->printList();
-  delete ll;
-  return 0;  
+  ll.append("ambrose");
+  ll.append("Dom");
+  ll.append("Riinu");
+
+  Linkedlist ll2 = ll;
+  Linkedlist ll3 = ll2;
+
+  useObject(std::move(ll3));
+
+  return 0;
 }
