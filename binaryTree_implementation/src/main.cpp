@@ -4,31 +4,28 @@
 #include "binaryTree.h"
 #include "searchAlgorithm.h"
 
-void const whichSearchAlgorithm(Tree &tree) {
-  std::string searchAlgorithm;
-  std::cout << "Which search algorithm you want for the tree search?? \n";
-  std::cin >> searchAlgorithm;
+int main()
+{
+  // Creating out tree
+  Tree mytree;
 
-  if (searchAlgorithm == "bfs") {
-    BFS(tree.getRoot());
-  } else {
-    DFS(tree.getRoot());
-  }
-}
+  // Appending values
+  mytree.insert("Ambrose");
+  mytree.insert("Riinu");
+  mytree.insert("Dom");
 
-int main() {
+  // Moving our tree members and values to tree2
+  //  Tree2 now has exclusive ownership of heap memory
+  Tree mytree2(std::move(mytree));
 
-  // Initializing Tree
-  Tree *mytree = new Tree();
-  mytree->insert("Ambrose");
-  mytree->insert("Riinu");
-  mytree->insert("Dom");
-  mytree->insert("Batman");
-  mytree->insert("Bill Maher");
-  mytree->insert("CNN");
-  mytree->insert("Sunset Park");
-  mytree->insert("Baby Boomer");
+  // Moving our tree members and values to tree2
+  //  Tree2 now has exclusive ownership of heap memory
+  Tree mytree3 = std::move(mytree2);
 
-  whichSearchAlgorithm(*mytree);
-  delete mytree;
+  // Copying over our values to tree4
+  Tree mytree4 = mytree3;
+
+  // Displaying values using DFS and BFS
+  BFS(mytree3.getRoot());
+  DFS(mytree4.getRoot());
 }

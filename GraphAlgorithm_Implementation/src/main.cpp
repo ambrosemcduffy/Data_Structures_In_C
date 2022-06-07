@@ -2,7 +2,8 @@
 #include <string>
 #include <vector>
 
-int main() {  
+int main()
+{
   Node node1 = Node("A");
   Node node2 = Node("B");
   Node node3 = Node("C");

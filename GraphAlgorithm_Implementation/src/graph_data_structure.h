@@ -4,9 +4,10 @@
 #include <string>
 #include <vector>
 
-class Node {
+class Node
+{
 public:
-  Node(std::string const &value) : value_(value) {}
+  Node(std::string const &&value) : value_(value) {}
   void addChild(Node &nodeValue);
   std::string getValue() const;
   std::vector<Node> getChildren() const;
@@ -16,7 +17,8 @@ private:
   std::vector<Node> children;
 };
 
-class Graph {
+class Graph
+{
 public:
   Graph(std::vector<Node> const &nodes_) : nodes(nodes_) {}
   void connectEdges(Node &to_node, Node &from_node);

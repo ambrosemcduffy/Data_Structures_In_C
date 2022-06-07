@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-void Linkedlist::append(std::string value) {
+void Linkedlist::append(std::string const &value) {
   Node *new_node = new Node(value);
   if (this->head == nullptr) {
     this->head = new_node;
@@ -18,24 +18,35 @@ void Linkedlist::append(std::string value) {
 }
 
 std::string Linkedlist::pop() {
-  Node *old_head = this->head;
+  std::string popedValue= this->head->value;
+  Node *temp = this->head;
   this->head = this->head->next;
   this->num_entries--;
-  return old_head->value;
+  delete temp;
+  return popedValue;
 }
 
-void Linkedlist::remove(std::string target) {
+void Linkedlist::remove(std::string &&target) {
   Node *node = this->head;
   this->num_entries--;
   while (node) {
     if (node->next->value == target) {
-      Node * temp = node->next;
+      Node *temp = node->next;
       node->next = node->next->next;
       delete temp;
       return;
     }
     node = node->next;
   }
+}
+
+void const Linkedlist::freeMemory(Node *node){
+    while (node)
+    {
+      Node *temp = node;
+      node = node->next;
+      delete temp;
+    }
 }
 
 void Linkedlist::printList() const {
@@ -45,7 +56,6 @@ void Linkedlist::printList() const {
     std::cout << node->value << "\n";
     Node *temp = node;
     node = node->next;
-    delete temp;
   }
 }
 

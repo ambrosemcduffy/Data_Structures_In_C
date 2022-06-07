@@ -44,8 +44,7 @@ vector<int> mergeAll(vector<int> &left_array, vector<int> &right_array) {
   }
 
   vector<int> left_array_ = slice(left_array, left_index, left_array.size());
-  vector<int> right_array_ =
-      slice(right_array, right_index, right_array.size());
+  vector<int> right_array_ = slice(right_array, right_index, right_array.size());
 
   merged_array = concat(right_array_, merged_array);
   merged_array = concat(left_array_, merged_array);
