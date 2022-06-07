@@ -1,11 +1,10 @@
 #ifndef HEADER_LINKEDLIST_H
 #define HEADER_LINKEDLIST_H
 
-#include <string>
 #include <stdio.h>
+#include <string>
 
-class Node
-{
+class Node {
 public:
   Node(std::string const &value_) : value(value_) {}
   std::string value;
